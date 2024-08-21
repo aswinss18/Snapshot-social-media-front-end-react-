@@ -1,18 +1,19 @@
 import "./rightbar.css";
 import { Users } from "../../dummyData";
 import Online from "../online/Online";
-export default function Rightbar({ profile }) {
+export default function Rightbar({ user }) {
   const HomeRightbar = () => {
+    const PF = import.meta.env.VITE_APP_PUBLIC_FOLDER || "";
     return (
       <>
         <div className="birthdayContainer">
-          <img src="assets/gift.png" alt="" className="birthdayImg" />
+          <img src={`${PF}gift.png`} className="birthdayImg" />
           <span className="birthdayText">
             <b>Rahul</b> and <b>4 other friends</b> have a birthday today
           </span>
         </div>
 
-        <img src="assets/ad.png" alt="" className="rightbarAd" />
+        <img src={`${PF}ad.png`} className="rightbarAd" />
         <h4 className="rightbarTitle">Online Friends</h4>
         <ul className="rightbarFriendList">
           {Users.map((u) => (
@@ -23,28 +24,35 @@ export default function Rightbar({ profile }) {
     );
   };
   const ProfileRightbar = () => {
+    const PF = import.meta.env.VITE_APP_PUBLIC_FOLDER || "";
     return (
       <>
         <h4 className="rightbarTitle">User information</h4>
         <div className="rightbarInfo">
           <div className="rightbarInfoItem">
             <span className="rightbarInfoKey">City:</span>
-            <span className="rightbarInfoValue">New York</span>
+            <span className="rightbarInfoValue">{user.city}</span>
           </div>{" "}
           <div className="rightbarInfoItem">
             <span className="rightbarInfoKey">From:</span>
-            <span className="rightbarInfoValue">Madrid</span>
+            <span className="rightbarInfoValue">{user.from}</span>
           </div>{" "}
           <div className="rightbarInfoItem">
             <span className="rightbarInfoKey">Relationship:</span>
-            <span className="rightbarInfoValue">Single</span>
+            <span className="rightbarInfoValue">
+              {user.relationship === 1
+                ? "Single"
+                : user.relationship === 1
+                ? "Married"
+                : "-"}
+            </span>
           </div>
         </div>
         <h4 className="rightbarTitle">User friends</h4>
         <div className="rightbarFollowings">
           <div className="rightbarFollowing">
             <img
-              src="assets/person/1.jpeg"
+              src={`${PF}person/1.jpeg`}
               alt=""
               className="rightbarFollowingImg"
             />
@@ -52,7 +60,7 @@ export default function Rightbar({ profile }) {
           </div>
           <div className="rightbarFollowing">
             <img
-              src="assets/person/2.jpeg"
+              src={`${PF}person/2.jpeg`}
               alt=""
               className="rightbarFollowingImg"
             />
@@ -60,7 +68,7 @@ export default function Rightbar({ profile }) {
           </div>
           <div className="rightbarFollowing">
             <img
-              src="assets/person/3.jpeg"
+              src={`${PF}person/3.jpeg`}
               alt=""
               className="rightbarFollowingImg"
             />
@@ -68,7 +76,7 @@ export default function Rightbar({ profile }) {
           </div>
           <div className="rightbarFollowing">
             <img
-              src="assets/person/4.jpeg"
+              src={`${PF}person/4.jpeg`}
               alt=""
               className="rightbarFollowingImg"
             />
@@ -76,7 +84,7 @@ export default function Rightbar({ profile }) {
           </div>
           <div className="rightbarFollowing">
             <img
-              src="assets/person/5.jpeg"
+              src={`${PF}person/5.jpeg`}
               alt=""
               className="rightbarFollowingImg"
             />
@@ -84,7 +92,7 @@ export default function Rightbar({ profile }) {
           </div>
           <div className="rightbarFollowing">
             <img
-              src="assets/person/6.jpeg"
+              src={`${PF}person/6.jpeg`}
               alt=""
               className="rightbarFollowingImg"
             />
@@ -97,7 +105,7 @@ export default function Rightbar({ profile }) {
   return (
     <div className="rightbar">
       <div className="rightbarWrapper">
-        {profile ? <ProfileRightbar /> : <HomeRightbar />}
+        {user ? <ProfileRightbar /> : <HomeRightbar />}
       </div>
     </div>
   );

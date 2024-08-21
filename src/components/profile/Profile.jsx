@@ -5,8 +5,21 @@ import Topbar from "../topbar/Topbar";
 import Feed from "../feed/Feed";
 import Rightbar from "../rightbar/Rightbar";
 import "../../pages/home/Home.css";
-
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useParams } from "react-router";
 export default function Profile() {
+  const PF = import.meta.env.VITE_APP_PUBLIC_FOLDER || "";
+  const [user, setUser] = useState({});
+  const username = useParams().username;
+  useEffect(() => {
+    const fetchUser = async () => {
+      const res = await axios.get(`${baseurl}/users?username=${username}`);
+
+      setUser(res.data);
+    };
+    fetchUser();
+  }, [username]);
   return (
     <>
       <Topbar />
@@ -16,25 +29,25 @@ export default function Profile() {
           <div className="profileRightTop">
             <div className="profileCover">
               <img
-                src="assets/post/3.jpeg"
+                src={user.coverPicture || PF + "person/noCover.jpeg"}
                 alt=""
                 className="profileCoverImg"
               />
 
               <img
-                src="assets/person/7.jpeg"
+                src={user.profilePicture || PF + "person/noAvatar.jpeg"}
                 alt=""
                 className="profileUserImg"
               />
             </div>
             <div className="profileInfo">
-              <h4 className="profileInfoName">Alexander</h4>
-              <span className="profileInfoDesc">Hello My friends</span>
+              <h4 className="profileInfoName">{user.username}</h4>
+              <span className="profileInfoDesc">{user.desc}</span>
             </div>
           </div>
           <div className="profileRightBottom">
-            <Feed />
-            <Rightbar profile />
+            <Feed username={username} />
+            <Rightbar user={user} />
           </div>
         </div>
       </div>

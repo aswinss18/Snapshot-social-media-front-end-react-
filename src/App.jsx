@@ -9,7 +9,7 @@ function App({ children }) {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route exact path="/" element={<Home />} />
 
         <Route path="/login" element={<Login />} />
 
