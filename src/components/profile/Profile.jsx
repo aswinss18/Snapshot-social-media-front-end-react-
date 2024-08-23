@@ -8,6 +8,7 @@ import "../../pages/home/Home.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
+const baseurl = import.meta.env.VITE_APP_BASE_URL;
 export default function Profile() {
   const PF = import.meta.env.VITE_APP_PUBLIC_FOLDER || "";
   const [user, setUser] = useState({});
