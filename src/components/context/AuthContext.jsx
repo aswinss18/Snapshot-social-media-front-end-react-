@@ -2,15 +2,15 @@ import { createContext, useReducer, useEffect } from "react";
 import AuthReducer from "./AuthReducer";
 const INITIAL_STATE = {
   user: {
-    _id: "66c04dcde8de8c5538033116",
-    profilePicture: "person/2.jpeg",
+    _id: "66c04db3e8de8c5538033115",
+    profilePicture: "person/1.jpeg",
     coverPicture: "",
     followers: [],
     followings: [],
     isAdmin: false,
-    username: "Aswin",
-    email: "kae@gmail.com",
-    password: "$2b$10$Cp8qJ3gTo/ufLKC5o3Z7yOGIA7WQbIYGSJ77tONIiJEDVgvU4Ru8a",
+    username: "sreeram4",
+    email: "kae6@gmail.com",
+    password: "$2b$10$ax.YniaBStgGTwwhAu74NuYLpi2s.GDv.IbFM1UOCFEIFJu6GfCxa",
   },
   isFetching: false,
   error: false,
