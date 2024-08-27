@@ -17,8 +17,23 @@ export default function Share() {
       desc: desc.current.value,
     };
 
+    if (file) {
+      const data = new FormData();
+      const fileName = Date.now() + file.name;
+      data.append("name", fileName);
+      data.append("file", file);
+      newPost.img = fileName;
+      console.log(newPost);
+      try {
+        await axios.post(`${baseurl}/upload`, data);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
     try {
-      axios.post(`${baseurl}/posts`, newPost);
+      await axios.post(`${baseurl}/posts`, newPost);
+      window.location.reload();
     } catch (err) {
       console.error(err);
     }
