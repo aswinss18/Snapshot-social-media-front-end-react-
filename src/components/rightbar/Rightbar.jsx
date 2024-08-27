@@ -17,7 +17,7 @@ export default function Rightbar({ user }) {
 
   useEffect(() => {
     setFollowed(currentUser.followings.includes(user?.id));
-  }, [currentUser, user.id]);
+  }, [currentUser, user]);
   useEffect(() => {
     const getFriends = async () => {
       try {
@@ -30,7 +30,7 @@ export default function Rightbar({ user }) {
       }
     };
     getFriends();
-  }, [user?._id]);
+  }, [user]);
   const handleClick = async () => {
     try {
       if (followed) {
@@ -102,10 +102,11 @@ export default function Rightbar({ user }) {
         </div>
         <h4 className="rightbarTitle">User friends</h4>
         <div className="rightbarFollowings">
-          {friends.map((friend) => (
+          {friends.map((friend, i) => (
             <Link
-              to={"profile/" + friend.username}
+              to={`/profile/${friend.username}`}
               style={{ textDecoration: "none" }}
+              key={i}
             >
               <div className="rightbarFollowing">
                 <img
